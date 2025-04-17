@@ -1,0 +1,26 @@
+﻿@model BlogViewModel
+
+<div class="card h-100 shadow rounded-4 border-0">
+    <!-- Blog Görseli -->
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl"
+             class="card-img-top rounded-top"
+             style="height: 200px; object-fit: cover;"
+             alt="Blog Görseli">
+    }
+
+    <div class="card-body">
+        <h5 class="card-title fw-semibold">@Model.Title</h5>
+        <p class="card-text text-secondary">
+            @Model.Content.Substring(0, Math.Min(100, Model.Content.Length))...
+        </p>
+    </div>
+
+    <div class="card-footer bg-white border-0">
+        <small class="text-muted d-block mb-2">
+            <i class="bi bi-tag"></i> Kategori: <strong>@Model.CategoryName</strong><br />
+            <i class="bi bi-calendar-event"></i> Yayınlanma: @Model.PublishDate.ToString("dd MMMM yyyy")
+        </small>
+    </div>
+</div>

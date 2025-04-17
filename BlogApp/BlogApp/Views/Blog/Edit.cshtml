@@ -1,0 +1,49 @@
+﻿@using BlogApp.Models.Services.ViewModels
+@{
+    ViewData["Title"] = "Bloglar";
+}
+
+@model EditBlogViewModel
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+}
+
+<h2 class="text-center mb-4">Tüm Blog Yazıları</h2>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Edit Blog</h2>
+
+        <form asp-action="Edit" method="post" asp-controller="Blog">
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select asp-for="CategoryId" class="form-select" asp-items="Model.CategoryList">
+                    <option value="">Kategori seçiniz</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PublishDate" class="form-label fw-semibold">Yayınlanma Tarihi</label>
+                <input asp-for="PublishDate" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Düzenle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

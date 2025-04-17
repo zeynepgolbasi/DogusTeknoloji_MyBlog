@@ -1,0 +1,27 @@
+﻿ @model IEnumerable<BlogViewModel>
+<h2 class="text-center mb-4">Blog Yazıları</h2>
+
+<form method="get" asp-action="Index">
+    <div class="mb-3">
+        <label for="categoryFilter" class="form-label">Kategori Seçin</label>
+        <select id="categoryFilter" name="categoryId" class="form-select" onchange="this.form.submit()">
+            <option value="0" selected="@(ViewBag.SelectedCategoryId == null || ViewBag.SelectedCategoryId == 0)">Tüm Kategoriler</option>
+            @foreach (var category in ViewBag.Categories as SelectList)
+            {
+                <option value="@category.Value" selected="@(ViewBag.SelectedCategoryId?.ToString() == category.Value)">
+                    @category.Text
+                </option>
+            }
+        </select>
+
+    </div>
+</form>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @foreach (var blog in Model)
+    {
+        <div class="col">
+            <!-- PartialView ile her bir blogu çağırıyoruz -->
+            @Html.Partial("~/Views/Shared/PartialViews/_BlogPostCard.cshtml", blog)
+        </div>
+    }
+</div>

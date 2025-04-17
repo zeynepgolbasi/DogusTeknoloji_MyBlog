@@ -1,0 +1,17 @@
+﻿@model IEnumerable<BlogViewModel>
+
+<h2 class="text-center mb-4">Tüm Blog Yazıları</h2>
+
+<div class="d-flex justify-content-end mb-4">
+    <a asp-action="Create" asp-controller="Blog" class="btn btn-primary">+ Yeni Blog Oluştur</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @foreach (var blog in Model)
+    {
+        <div class="col">
+            <!-- PartialView ile her bir blogu çağırıyoruz -->
+            @Html.Partial("~/Views/Shared/PartialViews/_BlogPostCard.cshtml", blog)
+        </div>
+    }
+</div>
